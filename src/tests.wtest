@@ -1,0 +1,40 @@
+
+import empresas.*
+import profesionales.*
+import universidades.*
+
+describe "test servicios" {
+	
+	const sanMartin = new Universidad(provincias=#{"Buenos Aires"}, honorariosRecomendados=3500)
+	const rosario = new Universidad(provincias=#{"Rosario"}, honorariosRecomendados=2800)
+	const corrientes = new Universidad(provincias=#{"Corrientes"}, honorariosRecomendados=4200)
+	const hurlingham = new Universidad(provincias=#{"Buenos Aires"}, honorariosRecomendados=8800)
+	
+	const juana = new ProfesionalVinculado(universidad=rosario)
+	const melina = new ProfesionalAsociado(universidad=corrientes)
+	const rocio = new ProfesionalLibre(universidad=hurlingham, honorarios=5000, provincias=#{"Santa Fe", "Cordoba", "Buenos Aires"})
+	const luciana = new ProfesionalLibre(universidad=rosario, honorarios=3200, provincias=#{"Santa Fe", "Entre Rios"})
+
+	const srl = new Empresa(profesionalesContratados=[juana, melina, rocio, luciana], honorarioReferencia=3500)
+	
+	test "caros" {
+		assert.that([rocio] == srl.profesionalesCaros())
+	}
+	test "formadoras" {
+		assert.equals(#{rosario, corrientes, hurlingham}, srl.universidadesFormadoras())
+	}
+	test "profesional mas barato" {
+		assert.equals{[juana] == srl.masBarato()}
+	}
+	
+	test "cubiertas" {
+		assert.equals{}
+	}
+	
+	test "profesionales estudiaron" {
+		assert.equals{2 == srl.cuantos(rosario)}
+		assert.equals{1 == srl.cuantos(hurlingham)
+		assert.equals{0 == srl.cuantos(sanMartin)}
+	}
+}
+}
