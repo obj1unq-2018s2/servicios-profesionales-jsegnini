@@ -10,6 +10,8 @@ class ProfesionalAsociado {
 	method provinciasDondePuedeTrabajar() { return #{"Entre Ríos", "Corrientes", "Santa Fe"} }
 	
 	method honorariosPorHora() { return 3000 }
+	
+	// TODO Falta cobrar
 }
 
 
@@ -32,6 +34,8 @@ class ProfesionalLibre {
 	var totalRecaudado = 0
 	var universidad
 	var honorarios 
+	
+	// TODO Esta inicialización es innecesaria por la forma en que usás este objeto.
 	var provincias = #{}
 	method universidad() { return universidad }
 	method universidad(univ) { universidad = univ }

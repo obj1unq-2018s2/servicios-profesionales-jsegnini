@@ -23,6 +23,7 @@ class Empresa {
 		return profesionalesContratados.map({prof => prof.provinciasDondePuedeTrabajar()}).contains(prov)
 	}
 	method cuantos(univ) {
+		// TODO Mejor con count
 		return profesionalesContratados.filter({prof => prof.universidad() == univ}).size()
 	}
 	method puedenTrabajarEnProvincia(prov) {
